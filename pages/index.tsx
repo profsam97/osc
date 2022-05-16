@@ -9,14 +9,11 @@ const Home = () => {
    React.useEffect(() => {
    const idToken = sessionStorage.getItem('idToken');
    const isLoggedin = !!idToken;
-   setInterval(() => {
     if(!isLoggedin){
        router.push('/Login')
      } else {
       router.push('/users')
      }
-   }, 100)
-   return (() => clearInterval())
    }, [])  
    return (
     <>

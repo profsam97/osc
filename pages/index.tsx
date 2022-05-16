@@ -1,10 +1,9 @@
-import axios from 'axios'
-import type { GetStaticProps, NextPage } from 'next'
-import { isAdmin } from '../Helpers/Auth'
+import type {  NextPage } from 'next'
 
 const Home: NextPage = () => {
   return (
     <>
+    <h2>Nothing here</h2>
     </>
 
   )
@@ -12,17 +11,13 @@ const Home: NextPage = () => {
 }
 
   export  async function getStaticProps(){
-     const response = await axios.get('http://localhost:3000/api/auth');
-     const data = await response.data;
-     if(data){
      return {
        redirect: {
          destination: '/Login'
+       },
+       props: {
+         some: 'nothing'
        }
-     }
-    }
-       return {
-         props: {}
      }
   }
 export default Home

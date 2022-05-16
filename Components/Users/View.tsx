@@ -104,7 +104,7 @@ const ViewPage:NextPage = () => {
                                 <TableCell >{post.session_year}</TableCell>
                                 <TableCell >{post.lecturer}</TableCell>
                                  <TableCell >{ post.missed_mark}</TableCell><TableCell>{Truncate(post.details, 30)}</TableCell> 
-                                <TableCell ><Button variant='contained' onClick={() => router.push(`/post/${post_id.toString()}`)} color='primary'>View</Button> </TableCell>
+                                <TableCell ><Button variant='contained' onClick={() => router.push(`/post/${post._id.toString()}`)} color='primary'>View</Button> </TableCell>
                                 <TableCell onClick={deletePostHandler.bind(null, post._id)}><Button variant='contained' color='error'>Delete</Button></TableCell>
                             </TableRow>
                         );

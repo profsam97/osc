@@ -162,11 +162,6 @@ export default function LoginPage() {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
-                <Link  href="#">
-                  Forgot password?
-                </Link>
-              </Grid>
               <Grid item sx={{color: 'blue'}}>
                 <Link href="/Register">
                   {"Don't have an account? Sign Up"}

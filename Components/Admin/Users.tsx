@@ -61,9 +61,9 @@ const Users: NextPage = () => {
             <Table sx={{minWidth: 650, background: 'dark'}}>
                 <TableHead>
                     <TableRow>
-                        <TableCell>#</TableCell>
-                        <TableCell >Username</TableCell>
-                        <TableCell >Email </TableCell>
+                        <TableCell>Username</TableCell>
+                        <TableCell >Email</TableCell>
+                        <TableCell >Role </TableCell>
                         <TableCell >Created </TableCell>
                         <TableCell >Delete</TableCell>
                     </TableRow>

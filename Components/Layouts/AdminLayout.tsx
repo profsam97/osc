@@ -88,7 +88,7 @@ const AdminLayout: React.FC<BaseLayoutProps> = ({children}) => {
         }}}>
             Today is {new Date().toDateString()}
           </Typography>
-    <Typography variant='h6' color='text.secondary'>Hi, {username}</Typography>
+    <Typography variant='h6' color='text.secondary' sx={{flexGrow:{xs:1, sm:0}}}>Hi, {username}</Typography>
             <div>
               <IconButton
                 size="large"

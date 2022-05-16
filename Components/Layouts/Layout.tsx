@@ -85,7 +85,7 @@ const Layout: React.FC<BaseLayoutProps> = ({children}) => {
             Today is  {new Date().toDateString()}
             {/* download date fns using npm install date-fns */}
           </Typography>
-    <Typography variant='h6' color='text.secondary'>Hi, {username}</Typography>
+    <Typography variant='h6' color='text.secondary' sx={{flexGrow:{xs:1, sm:0}}}>Hi, {username}</Typography>
             <div>
               <IconButton
                 size="large"

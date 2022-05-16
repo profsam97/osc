@@ -1,0 +1,26 @@
+.pages{
+        background: 'black';
+        /* width: '100%'; */
+        padding: '24px';
+        width: calc(100% - 200px);
+    }
+    .drawer {
+      width: 280
+    }
+    .root{
+      display: 'flex';
+      width: 280
+    }
+    .drawerPaper {
+      width: 280
+    }
+
+    .title{
+      padding: '16px'
+    }
+    .appbar {
+      width: calc(100% - 200px);
+    }
+  .avatar{
+    margin-left: 4
+  } 

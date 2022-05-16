@@ -1,5 +1,5 @@
 import { Collection, Db, MongoClient, ObjectId } from "mongodb";
-import {GetStaticProps, NextPage } from "next";
+import {GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
 import DetailsPage from "../../../Components/detailsPage";
@@ -13,19 +13,18 @@ type post = {
   details: string
  }
 }
-const postDetails  = (props: post) =>{
+const PostDetails  = (props: post) =>{
    const router = useRouter();
    const {posts } = props;
    if(router.isFallback){
      console.log('sdsd')
      return <Loader/>
-   }else{
-   return  (
+   }
+  return  (
     <>
     <DetailsPage posts={posts} />
     </>
-    ) 
-   } 
+  ) 
 }
 interface IParams  extends ParsedUrlQuery{
   post_id : string
@@ -80,4 +79,4 @@ export const getStaticProps: GetStaticProps = async (context) => {
     notFound: true
   }
 }
-export default postDetails;
+export default PostDetails;

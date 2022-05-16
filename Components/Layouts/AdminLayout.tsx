@@ -79,7 +79,7 @@ const AdminLayout: React.FC<BaseLayoutProps> = ({children}) => {
        sx={(theme) => ({
         color: 'black',
         background: '#fff',
-        width:`100% - 280px`
+        width:`100% - 240px`
         // ...theme.typography.overline,
       })}
       className={classes.appbar}>

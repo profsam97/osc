@@ -2,7 +2,7 @@
         background: 'black';
         /* width: '100%'; */
         padding: '24px';
-        width: calc(100% - 200px);
+        width: calc(100% - 280px);
     }
     .drawer {
       width: 280
@@ -19,7 +19,7 @@
       padding: '16px'
     }
     .appbar {
-      width: calc(100% - 200px);
+      width: calc(100% - 200px) !important;
     }
   .avatar{
     margin-left: 4

@@ -54,7 +54,7 @@ const Dashboard:NextPage = () => {
           <>
           {isLoading ? 
           <Grid key={data.title} item xs={12} sm={6} md={4} >
-          <Stack spacing={0.5}  sx={{width: {xs: 250, sm: 200, md: 250}}}>
+          <Stack spacing={0.5}  sx={{width: {xs: 220, sm: 200, md: 250}}}>
           <Skeleton variant='rectangular'  animation='wave' height={158}  /> 
           <Skeleton  animation='wave' />
           </Stack>

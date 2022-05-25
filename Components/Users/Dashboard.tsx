@@ -1,5 +1,5 @@
 import { ModeComment, Person } from '@mui/icons-material'
-import {  Grid, Typography } from '@mui/material'
+import {  Grid, Skeleton, Typography } from '@mui/material'
 import { NextPage } from 'next'
 import React from 'react'
 import { useSelector } from 'react-redux'
@@ -53,13 +53,20 @@ const Dashboard:NextPage = () => {
   return (
     <Layout>
         <Typography variant='h6' sx={{fontSize: {xs:14, md: 20}}} >Welcome, {username}</Typography>
-        {isLoading && <Loader/>}
-      {!isLoading  && <Grid container mt={2} spacing={2}>
-      {dashboardData.map(data => (
-        <Cards key={data.title} data={data}/>
-      ))}
-        </Grid>}
-   
+      <Grid container mt={2} spacing={2}>
+      {dashboardData.map((data) => {
+          return (
+          <>
+          {isLoading ? 
+          <Grid item xs={12} sm={6}md={4}>
+          <Skeleton variant='rectangular' animation='wave' width={310} height={158} /> 
+          </Grid> :
+        <Cards key={data.title} data={data}/>}
+         </>
+          )
+      })}
+        </Grid>
+  
     </Layout>
   )
 }

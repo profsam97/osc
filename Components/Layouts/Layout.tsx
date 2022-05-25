@@ -112,7 +112,7 @@ const Layout: React.FC<BaseLayoutProps> = ({children}) => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem  onClick={logoutHandler}>
+              <MenuItem  onClick={logoutHandler}>
               Logout &nbsp;
                    <Logout/> 
                 </MenuItem>

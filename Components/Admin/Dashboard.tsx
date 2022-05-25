@@ -48,13 +48,16 @@ const Dashboard:NextPage = () => {
   return (
     <AdminLayout>
         <Typography variant='h6' sx={{fontSize: {xs:14, md: 20}}} >Welcome, {username}</Typography>
-        <Grid container mt={2} spacing={2}>
+        <Grid container mt={2} spacing={{xs:2, sm: 3, md: 6,lg:2}}>
         {dashboardData.map((data) =>  {
           return (
           <>
           {isLoading ? 
-          <Grid item xs={12} sm={6}md={4}>
-          <Skeleton variant='rectangular'  animation='wave' width={310} height={158} /> 
+          <Grid key={data.title} item xs={12} sm={6} md={4} >
+          <Stack spacing={0.5}  sx={{width: {xs: 250, sm: 200, md: 250}}}>
+          <Skeleton variant='rectangular'  animation='wave' height={158}  /> 
+          <Skeleton  animation='wave' />
+          </Stack>
           </Grid>
           :
           <Cards key={data.title} data={data} />}

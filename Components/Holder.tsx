@@ -6,13 +6,17 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-
-const Holder : React.JSXElementConstructor<any> = (props) => {
+    interface Holder {
+        children: any,
+        title: string
+    }
+const Holder : React.JSXElementConstructor<any> = (props : Holder) => {
+        const  {title, children}= props;
     return(
         <>
         <Head>
-            <title>Register</title>
-            <meta name='description' content='Please Sign Up to make a Complaint' />
+            <title>{title}</title>
+            <meta name='description' content={`Please Sign ${title === 'Register' ? 'Up' : 'In' } to make a Complaint`} />
         </Head>
         <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -28,9 +32,9 @@ const Holder : React.JSXElementConstructor<any> = (props) => {
                 <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-                Sign Up
+                Sign {title === 'Register' ? 'Up' : 'In' }
             </Typography>
-            {props.children}
+            {children}
         </Box>
         </Container>
         </>

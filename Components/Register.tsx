@@ -83,7 +83,7 @@ export default function RegisterPage() {
       mutate(signUpData)    
   };
   return (
-    <Holder>
+    <Holder title='Register'>
           <Box component="form" noValidate onSubmit={handleSubmit(onSubmit)} sx={{ mt: 1 }}>
             {isError && <FormHelperText sx={{color: 'red'}}>{error?.response?.data?.error?.message}</FormHelperText>}
             <Controller

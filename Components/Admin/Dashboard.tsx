@@ -1,12 +1,11 @@
 import { ModeComment, Person } from '@mui/icons-material'
-import {  CircularProgress, Grid, Skeleton, Stack, Typography } from '@mui/material'
+import {  Grid, Skeleton, Stack, Typography } from '@mui/material'
 import { NextPage } from 'next'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { viewPostDefaultValue, viewUsersDefaultValue } from '../../Helpers/Types'
 import { useAllUserData, useGetPostsData } from '../../Hooks/useDataFetch'
 import AdminLayout from '../Layouts/AdminLayout'
-import Loader from '../UI/Loading'
 import Cards from '../Utilities/Cards'
 
 const Dashboard:NextPage = () => {
@@ -54,7 +53,7 @@ const Dashboard:NextPage = () => {
           <>
           {isLoading ? 
           <Grid key={data.title} item xs={12} sm={6} md={4} >
-          <Stack spacing={0.5}  sx={{width: {xs: 220, sm: 200, md: 250, lg: 310}}}>
+          <Stack spacing={0.5}  sx={{width: {xs: 220, sm: 200, md: 250, lg: 310, xl: 350}}}>
           <Skeleton variant='rectangular'  animation='wave' height={158}  /> 
           <Skeleton  animation='wave' />
           </Stack>

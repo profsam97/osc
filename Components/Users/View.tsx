@@ -1,4 +1,4 @@
-import { Button, CircularProgress, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
+import { Button, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { NextPage } from 'next'
 import Link from 'next/link'
@@ -42,11 +42,11 @@ const ViewPage:NextPage = () => {
         dispatch(utilitiesAction.snackStart(snackbar))
         dispatch(utilitiesAction.deletePostHandler())
         deletePost({post_id})
-        setTimeout(() => {
+       const timeOut = setTimeout(() => {
         retryHandler();
         }, 2000)
+    return (() => clearTimeout(timeOut));  
     }
-    return (() => clearTimeout());  
     }, [isDeleting])
     const {isError, isLoading,  data, mutate:getUserPost} = useUserPost();
     const posts: User = data;

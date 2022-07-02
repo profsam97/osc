@@ -17,7 +17,6 @@ const PostDetails  = (props: post) =>{
    const router = useRouter();
    const {posts } = props;
    if(router.isFallback){
-     console.log('sdsd')
      return <Loader/>
    }
   return  (
@@ -34,7 +33,7 @@ export async function getStaticPaths(){
         const db : Db = client.db();
         const post : Collection<viewPostDefaultValue> = db.collection('posts');
         const posts = await post.find({}, { projection:  {_id: 1}}).toArray();
-        client.close()
+        await client.close()
   return {
     fallback: true,
     paths :  posts.map(post =>({params: {post_id: post._id.toString()},}))
@@ -54,7 +53,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const db: Db = client.db();
   const posts : Collection<getPost>= db.collection('posts');
   const post = await posts.findOne({_id: new ObjectId(post_id.trim()) })
-  client.close()
+  await client.close()
   if(post_id){
     try {
     return {

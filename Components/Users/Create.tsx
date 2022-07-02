@@ -13,6 +13,7 @@ import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import getDate from '../../Helpers/getDate'
 import { CreatePostDefaultValue } from '../../Helpers/Types'
+import TextInput from "../TextInput";
 const CreatePage:NextPage = () => {
 
     type posts = {
@@ -79,19 +80,9 @@ const CreatePage:NextPage = () => {
             name='matric'
             control={control}
             render={({field, formState: {errors}}) => (
-             <TextField
-              margin="normal"
-              required
-              fullWidth
-              {...field}
-              helperText={errors?.matric?.message}
-              error={errors?.matric ? true : false}
-              id="matric"
-              label="Matric no"
-              name="matric"
-              autoComplete="matric"
-              autoFocus
-            />
+                <TextInput
+                    data={errors?.matric} field={field} id='matric'
+                />
             )}
             />
             <Controller 
@@ -106,7 +97,7 @@ const CreatePage:NextPage = () => {
               value={value}
               onChange={onChange}
               helperText={errors?.course?.message}
-              error={errors?.course ? true : false}
+              error={!!errors?.course}
               label="select course"
               type="text"
               id="course"
@@ -132,7 +123,7 @@ const CreatePage:NextPage = () => {
               value={value}
               onChange={onChange}
               helperText={errors?.course_code?.message}
-              error={errors?.course_code ? true : false}
+              error={!!errors?.course_code}
               name="course_code"
               label="course code"
               type="text"
@@ -151,19 +142,9 @@ const CreatePage:NextPage = () => {
             name='lecturer'
             control={control}
             render={({field , formState: {errors}}) => (
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              {...field}
-              helperText={errors?.lecturer?.message}
-              error={errors?.lecturer ? true : false}
-              name="Lecturer"
-              label="Lecturer Name"
-              type="text"
-              id="lecturer"
-              autoComplete="lecturer"
-            />  
+                <TextInput
+                    data={errors?.lecturer} field={field} id='lecturer'
+                />
             )}
             />
             <Controller 
@@ -178,7 +159,7 @@ const CreatePage:NextPage = () => {
               value={value}
               onChange={onChange}
               helperText={errors?.session_month?.message}
-              error={errors?.session_month ? true : false}
+              error={!!errors?.session_month}
               name="session-month"
               label="Session month"
               type="text"
@@ -205,7 +186,7 @@ const CreatePage:NextPage = () => {
               value={value}
               onChange={onChange}
               helperText={errors?.session_year?.message}
-              error={errors?.session_year ? true : false}
+              error={!!errors?.session_year}
               name="session_year"
               label="session_year"
               type="text"
@@ -224,19 +205,9 @@ const CreatePage:NextPage = () => {
             name='missed_mark'
             control={control}
             render={({field, formState: {errors}}) => (
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              {...field}
-              helperText={errors?.missed_mark?.message}
-              error={errors?.missed_mark ? true : false}
-              name="missed_mark"
-              label="Missed Mark"
-              type="number"
-              id="missed_mark"
-              autoComplete="missed_mark"
-            />
+                <TextInput
+                    data={errors?.missed_mark} field={field} id='missed_mark'
+                />
             )}
             />
             <Controller 
@@ -251,7 +222,7 @@ const CreatePage:NextPage = () => {
               rows={3}
               {...field}
               helperText={errors?.details?.message}
-              error={errors?.details ? true : false}
+              error={!!errors?.details}
               name="details"
               label="Enter Details"
               type="text"
@@ -260,7 +231,6 @@ const CreatePage:NextPage = () => {
             />
             )}
             />
- 
             <Button
               type="submit"
               fullWidth

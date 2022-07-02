@@ -1,4 +1,4 @@
-import { AddCircleOutlineOutlined, SendOutlined } from '@mui/icons-material'
+import { AddCircleOutlineOutlined } from '@mui/icons-material'
 import { Button, CircularProgress, TextField, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { NextPage } from 'next'
@@ -13,19 +13,22 @@ import { utilitiesAction } from '../../Store/utilities'
 import Rules from '../../Helpers/Validatation'
 import getDate from '../../Helpers/getDate'
 import { CreatePostDefaultValue } from '../../Helpers/Types'
+import TextInput from "../TextInput";
 const CreatePage:NextPage = () => {
    interface Auth {
      auth: {
        username: string
      }
-   } 
-      const router = useRouter();
+   }
+
+    const router = useRouter();
       
     const dispatch = useDispatch();
     const snackbar = {
       message: 'Posted Successfully',
       severity: 'success'
     }
+
     const username = useSelector((state: Auth)=> state.auth.username);
 
     const onSuccess = () => {
@@ -33,7 +36,7 @@ const CreatePage:NextPage = () => {
         router.push('/admin/view')
     }
     const {isLoading, mutate: addPostHandler } = useNewPost(onSuccess);
-  const onSubmit:SubmitHandler<CreatePostDefaultValue> = (data) => {
+  const onSubmit:SubmitHandler<CreatePostDefaultValue> = () => {
     const postData = {...getValues(), username, date: getDate}
     addPostHandler(postData)
     }
@@ -71,133 +74,63 @@ const CreatePage:NextPage = () => {
           name='matric'
           control={control}
           render={({field, formState: {errors}}) => (
-          <TextField
-              margin="normal"
-              required
-              fullWidth
-              {...field}
-              error={errors?.matric ? true : false}
-              helperText={errors?.matric?.message}
-              id="matric"
-              label="Matric no"
-              name="matric"
-              autoComplete="matric"
-              autoFocus
-            />
+              <TextInput
+                  data={errors?.matric} field={field} id='matric'
+              />
           )}
           />
            <Controller
           name='course'
           control={control}
           render={({field, formState: {errors}}) => (
-              <TextField
-              margin="normal"
-              required
-              fullWidth
-              {...field}
-              error={errors?.course ? true : false}
-              helperText={errors?.course?.message}
-              name="course"
-              label="enter course"
-              type="text"
-              id="course"
-              autoComplete="course"
-            />
+              <TextInput
+                  data={errors?.course} field={field} id='course'
+              />
             )}
             />
           <Controller
           name='course_code'
           control={control}
           render={({field, formState: {errors}}) => (
-           <TextField
-              margin="normal"
-              required
-              fullWidth
-              {...field}
-              error={errors?.course_code ? true : false}
-              helperText={errors?.course_code?.message}
-              name="course_code"
-              label="course code"
-              type="text"
-              id="course_code"
-              autoComplete="course_code"
-            />
+              <TextInput
+                  data={errors?.course_code} field={field} id='course_code'
+              />
             )}
           />
           <Controller
           name='lecturer'
           control={control}
           render={({field, formState: {errors}}) => (
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              {...field}
-              error={errors?.lecturer ? true : false}
-              helperText={errors?.lecturer?.message}
-              name="Lecturer"
-              label="Lecturer Name"
-              type="text"
-              id="lecturer"
-              autoComplete="lecturer"
-            />
+              <TextInput
+                  data={errors?.lecturer} field={field} id='lecturer'
+              />
             )}
             />
           <Controller
           name='session_month'
           control={control}
           render={({field, formState: {errors}}) => (
-           <TextField
-              margin="normal"
-              required
-              fullWidth
-              {...field}
-              type='text'
-              error={errors?.session_month ? true : false}
-              helperText={errors?.session_month?.message}
-              name="session-month"
-              label="Session month"
-              id="section_month"
-              autoComplete="section_month"
-            />
+              <TextInput
+                  data={errors?.session_month} field={field} id='session_month'
+              />
               )}
           />
           <Controller
           name='session_year'
           control={control}
           render={({field, formState: {errors}}) => (
-           <TextField
-              margin="normal"
-              required
-              fullWidth
-              {...field}
-              error={errors?.session_year ? true : false}
-              helperText={errors?.session_year?.message}
-              name="session_year"
-              label="session_year"
-              type="text"
-              id="session_year"
-              autoComplete="session_year"
-            />
+              <TextInput
+                  data={errors?.session_year} field={field} id='session_year'
+              />
             )}
-
           />
           <Controller
           name='missed_mark'
           control={control}
           render={({field,  formState: {errors}}) => (
-             <TextField
-              margin="normal"
-              required
-              fullWidth
-              {...field}
-              error={errors?.missed_mark ? true : false}
-              helperText={errors?.missed_mark?.message}
-              label="Missed Mark"
-              type="number"
-              id="missed_mark"
-              autoComplete="missed_mark"
-            />
+              <TextInput
+                  data={errors?.missed_mark} field={field} id='missed_mark' type='number'
+              />
             )}
           />
           <Controller
@@ -211,7 +144,7 @@ const CreatePage:NextPage = () => {
               multiline={true}
               rows={3}
               {...field}
-              error={errors?.details ? true : false}
+              error={!!errors?.details}
               helperText={errors?.details?.message}
               label="Enter Details"
               type="text"

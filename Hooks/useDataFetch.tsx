@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 import { useMutation, useQuery } from 'react-query';
-import { createPostDefaultValue, createUserDefaultValue, createUserDefaultValueMongodb } from '../Helpers/Types';
+import { createPostDefaultValue, createUserDefaultValueMongodb } from '../Helpers/Types';
 
 export default function useDataFetch (onSuccess: any) {
     const signUpHandler = async (data: object) => {
@@ -11,7 +11,6 @@ export default function useDataFetch (onSuccess: any) {
     return useMutation(signUpHandler, {
        onSuccess,
        onError: async (data: any) => {    
-        // console.log(data.response.data.error.message)
         return data;
       },
     });
@@ -24,8 +23,7 @@ export  function useDataPost (onSuccess: any) {
     }
     return useMutation('signIn', signInHandler, {
         onSuccess,
-        onError: async(data: any) => {
-            console.log(data)
+        onError: async() => {
         }
     });
 }
@@ -36,8 +34,7 @@ export function useNewUser () {
         return response.data;
     }
     return useMutation(newUserHandler, {
-        onError: async(data: any) => {
-            console.log(data)
+        onError: async() => {
         }
     });
 }
@@ -62,9 +59,8 @@ export function useNewPost (onSuccess: any) {
         return response.data;
     }
     return useMutation(newPostHandler, {
-        onError: async(data: object) => {
-            console.log(data)
-        }, 
+        onError: async() => {
+        },
         onSuccess
     });
 }
@@ -77,9 +73,8 @@ export function useUserPost () {
         return response.data;
     }
     return useMutation(userPostHandler, {
-        onError: async(data: object) => {
-            console.log(data)
-        }, 
+        onError: async() => {
+        },
     });
 }
 export function useGetPostsData () {
@@ -88,8 +83,7 @@ export function useGetPostsData () {
         return response.data;
     }
     return useQuery('getPostData', getPostHandler, {
-        onError: async(data: object) => {
-            console.log(data)
+        onError: async() => {
         }
     });
 }
@@ -99,8 +93,7 @@ export function useAllUserData () {
         return response.data;
     }
     return useQuery('getAllUserData', getAllUserHandler, {
-        onError: async(data: object) => {
-            console.log(data)
+        onError: async() => {
         },
     });
 }
@@ -113,10 +106,8 @@ export function useDeletePost () {
         return response.data;
     }
     return useMutation(deletePostHandler, {
-        onError: async(data: object) => {
-            console.log(data)
-        }, 
-        
+        onError: async() => {
+        },
     });
 }
 export  function useDeleteUser () {
@@ -133,9 +124,7 @@ export  function useDeleteUser () {
         return response.data;
     }
     return useMutation(deleteUserHandler, {
-        onError: async(data: object) => {
-            console.log(data)
-        }, 
-        
+        onError: async() => {
+        },
     });
 }

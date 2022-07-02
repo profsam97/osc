@@ -1,30 +1,23 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from 'next/link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 import {Controller, SubmitHandler, useForm} from 'react-hook-form';
 import { SendOutlined } from '@mui/icons-material';
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
 import  { useDataPost, useLoginUser } from '../Hooks/useDataFetch';
 import { CircularProgress, FormHelperText } from '@mui/material';
-import { useMutation } from 'react-query';
-import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { authAction } from '../Store/auth';
 import Loader from './UI/Loading';
 import { loginUserDefaultValue } from '../Helpers/Types';
-import Head from 'next/head';
+import TextInput from "./TextInput";
+import Holder from "./Holder";
 const schema = yup.object().shape({
   email: yup.string().email().required(),
   password: yup.string().required().min(8)
@@ -33,7 +26,7 @@ const schema = yup.object().shape({
 export default function LoginPage() {
 
   const dispatch = useDispatch();
-  const {  handleSubmit, control, getValues, reset, formState : {  isSubmitSuccessful } } = useForm<loginUserDefaultValue>({
+  const {  handleSubmit, control, getValues, reset } = useForm<loginUserDefaultValue>({
     resolver: yupResolver(schema),
     mode: 'onChange',
     defaultValues: {
@@ -84,46 +77,17 @@ export default function LoginPage() {
   };
 
   return (
-    <>
-    <Head>
-    <title>Login</title>
-    <meta name='description' content='Please Login to your account' />
-    </Head>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 1 }}> 
+      <Holder>
+      <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate sx={{ mt: 1 }}>
           {loginLoading && <Loader/>}
           {isError && <FormHelperText sx={{color: 'red'}}> {error?.response?.data?.error?.message}</FormHelperText>}
           <Controller 
           name='email'
           control={control}
           render={({field, formState: {errors}}) => (
-          <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              autoComplete="email"
-              autoFocus
-              helperText={errors?.email?.message}
-              error={errors?.email ? true : false}
-              {...field}
-            />
+              <TextInput
+                  data={errors?.email} field={field} id='email'
+              />
           )
           }
           />
@@ -131,18 +95,9 @@ export default function LoginPage() {
           control={control}
           name='password'
           render={({ field, formState: {errors} }) => (
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              helperText={errors?.password?.message}
-              error={errors?.password ? true : false}
-              label="Password"
-              type="password"
-              id="password"
-              {...field}
-              autoComplete="current-password"
-            />
+              <TextInput
+                  data={errors?.password} field={field} id='password' type='password'
+              />
           )}
           />
 
@@ -169,8 +124,6 @@ export default function LoginPage() {
               </Grid>
             </Grid>
           </Box>
-        </Box>
-      </Container>
-</>
+      </Holder>
   );
 }

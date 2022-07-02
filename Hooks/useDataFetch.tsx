@@ -23,7 +23,7 @@ export  function useDataPost (onSuccess: any) {
     }
     return useMutation('signIn', signInHandler, {
         onSuccess,
-        onError: async() => {
+        onError: async(data: any) => {
         }
     });
 }
